@@ -13,5 +13,5 @@ frontend na-do-frontend
 backend na-do-backend
     http-request redirect scheme https if !{ ssl_fc }
     balance roundrobin
-    server 408984-web-01 3.84.168.216:80 check
-    server 408984-web-02 34.224.15.97:80 check
+    server 430970-web-01 34.202.234.195:80 check
+    server 430970-web-02 34.201.164.6:80 check
