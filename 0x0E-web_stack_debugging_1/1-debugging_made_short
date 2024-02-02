@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
-# configures nginx to run on port 80
-sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
-pkill -1 nginx
+
+echo "Before sed:"
+cat /etc/nginx/sites-enabled/default
+
+# Use sudo to run the sed command with elevated privileges
+sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+
+echo "After sed:"
+cat /etc/nginx/sites-enabled/default
+
+# Use sudo to run pkill with elevated privileges
+sudo pkill -1 nginx
+
