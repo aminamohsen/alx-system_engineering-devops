@@ -1,0 +1,1 @@
+In this project, we are asked to write a blog post to answer the classic interview question - "What happens when you type a URL into a browser and hit Enter?" This is very important for me as a Software Engineer.We will explore fundamental concepts such as URL, DNS , TCP/IP, Firewall, Load Balancer, Webserver, Application Servers, and Database.
