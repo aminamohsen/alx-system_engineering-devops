@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-#to  Connect to the server 54.157.146.198 with key in ~/.ssh/school
+#using ssh ti connect to a server
 
-ssh -i ~/.ssh/school ubuntu@52.91.151.249
+ssh ubuntu -i ~/.ssh/school
