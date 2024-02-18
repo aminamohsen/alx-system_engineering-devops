@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 #using ssh ti connect to a server
 
-ssh ubuntu -i ~/.ssh/school
+ssh ubuntu -i ~/.ssh/school ubuntu@100.25.193.34
