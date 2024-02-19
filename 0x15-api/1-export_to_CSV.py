@@ -1,39 +1,18 @@
 #!/usr/bin/python3
-""" Exports to-do list information for a given employee ID to JSON format """
-
-
-from requests import get
-from sys import argv
-import json
+""" Exports to-do list data for a given employee ID to CSV format."""
+import csv
+import requests
+import sys
 
 if __name__ == "__main__":
-    response = get('https://jsonplaceholder.typicode.com/todos/')
-    data = response.json()
+    user_id = sys.argv[1]
+    url = "https://jsonplaceholder.typicode.com/"
+    user = requests.get(url + "users/{}".format(user_id)).json()
+    username = user.get("username")
+    todos = requests.get(url + "todos", params={"userId": user_id}).json()
 
-    row = []
-    response2 = get('https://jsonplaceholder.typicode.com/users')
-    data2 = response2.json()
-
-    for j in data2:
-        if j['id'] == int(argv[1]):
-            u_name = j['username']
-            id_no = j['id']
-
-    row = []
-
-    for j in data:
-
-        new_dict = {}
-
-        if j['userId'] == int(argv[1]):
-            new_dict['username'] = u_name
-            new_dict['task'] = j['title']
-            new_dict['completed'] = j['completed']
-            row.append(new_dict)
-
-    final_dict = {}
-    final_dict[id_no] = row
-    json_obj = json.dumps(final_dict)
-
-    with open(argv[1] + ".json", "w") as f:
-        f.write(json_obj)
+    with open("{}.csv".format(user_id), "w", newline="") as csvfile:
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+        [writer.writerow(
+            [user_id, username, t.get("completed"), t.get("title")]
+         ) for t in todos]
